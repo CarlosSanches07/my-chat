@@ -1,0 +1,19 @@
+{
+  "name": "chatclient",
+  "version": "1.0.0",
+  "description": "a chat client, only for learn purposes",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarlosSanches07/my-chat.git"
+  },
+  "author": "@charlin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CarlosSanches07/my-chat/issues"
+  },
+  "homepage": "https://github.com/CarlosSanches07/my-chat#readme"
+}
