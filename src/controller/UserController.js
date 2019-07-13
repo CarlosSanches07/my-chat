@@ -1,16 +1,15 @@
 const Input = require('../lib/Input');
 
-module.exports = 
-    class UserController {
+module.exports = {
     //User controller functions
-    constructor() {
+    init() {
         _input = Input;
-    }
+    },
 
-    getUser() {
-        const data = _input.getUser();
+    async getUser() {
+        const data = await _input.getUser();
         return {
-            name : data[0].name
+            name : data.name
         }
     }
 }

@@ -1,4 +1,5 @@
-const inquirer      = require('inquirer');
+const inquirer = require('inquirer');
+const clear = require('clear');
 
 module.exports = {
     //Input funcions here
@@ -6,14 +7,16 @@ module.exports = {
     getUser: () => {
         const questions = [
             {
-                name: 'username',
+                name: 'name',
                 type: 'input',
                 message: 'Enter your name: ',
                 validate: function (value) {
-                    if (value.lenght) {
+                    if (value) {
                         return true;
                     }else {
-                        return true;
+                        clear();
+                        console.log('Please enter a valid name');
+                        return false;
                     }
                 }
             },
