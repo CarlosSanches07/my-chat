@@ -1,21 +1,34 @@
+const validateRoom = (room) => {
+    if (room)
+        return true;
+    else
+        console.log('Please insert a valid room');
+    return false;
+}
+
 module.exports = {
-    //User controller functions
+    //Commands functions
     'connect' : (room) =>  {
-        if (room)
-            console.log(room)
-        else
-            console.log('Please insert a valid room');
+        if (validateRoom(room))
+            console.log(room);
     },
 
     'connect-global' : () => {
         console.log('globalzinho')
     },
 
+    'create-room' : (room) => {
+        if (validateRoom(room))
+            console.log(room) 
+    },
+
+
     'help' : () => {
         console.log(`
         -------------- HELP ----------------
-        -- Type connect <room> -> to p2p chat
-        -- type connect-global -> to global chat
+        -- Type connect <room-name> -> to p2p chat;
+        -- Type connect-global -> to global chat;
+        -- Type create-room <room-name> -> to create a room;
         
         `);
     }
