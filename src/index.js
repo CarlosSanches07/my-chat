@@ -1,6 +1,5 @@
 //Here starts the main code
-//import MainView from './view/MainView';
-
+const MainView = require('./view/MainView');
 const inquirer = require('../src/lib/Input');
 
 const run = async function() {
