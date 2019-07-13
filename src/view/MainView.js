@@ -20,10 +20,8 @@ module.exports = {
         try {
             this.header();
             UserController.init();
-            const user = UserController.getUser();
-            console.log(
-
-            )
+            const user = await UserController.getUser();
+            const optionMenu = await UserController.getMenuChoice();
         } catch (e) {
             console.error(e);
         }

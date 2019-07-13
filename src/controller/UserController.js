@@ -11,5 +11,12 @@ module.exports = {
         return {
             name : data.name
         }
+    },
+
+    async getMenuChoice() {
+        const data = await _input.getMenuChoice();
+        return {
+            option : data.menuOption
+        }
     }
 }
