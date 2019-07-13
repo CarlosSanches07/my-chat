@@ -1,9 +1,11 @@
 //Here starts the main code
-const MainView = require('./view/MainView');
+const View = require('./view/MainView');
+const Input = require('./lib/Input');
 
-const run = async function() {
+const run = function() {
     //Here comes the execution flow
-    await MainView.mainView();
+    View.header();
+    Input.run();
 }
 
 run();

@@ -1,43 +1,29 @@
-const inquirer = require('inquirer');
-const clear = require('clear');
+const readline = require('readline');
+const comm = require('../controller/Commands');
 
 module.exports = {
-    //Input funcions here
+    run: function(){  
+        const rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout,
+            prompt: `my-chat~@${process.env.USERNAME}/>`
+        });
 
-    getUser: () => {
-        const questions = [
-            {
-                name: 'name',
-                type: 'input',
-                message: 'Enter your name: ',
-                validate: function (value) {
-                    if (value) {
-                        return true;
-                    }else {
-                        console.log('Please enter a valid name');
-                    }
-                }
-            },
-        ];
-
-        return inquirer.prompt(questions);
-    },
-
-    getMenuChoice: () => {
-        values = [1, 2, 3]
-        const questions = [
-            {
-                name:'menuOption',
-                type: 'list',
-                message: 'Choose One',
-                choices: [
-                    {name: '1', value: values[0], short: 'Choose 1'},
-                    {name: '2', value: values[1], short: 'Choose 2'},
-                    {name: '3', value: values[2], short: 'Choose 3'}
-                ]
-                
+        rl.prompt();
+        
+        rl.on('line', (line) => {
+            command = line.split(' ')[0];
+            param = line.split(' ')[1];
+            if(comm[command]){
+                comm[command](param);
             }
-        ];
-        return inquirer.prompt(questions);
+            else
+                console.log('Type help for help');
+            rl.prompt();
+        
+        }).on('close', () => {
+            console.log('Have a great day!');
+            process.exit(0);
+        });
     }
 }
