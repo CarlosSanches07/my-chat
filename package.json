@@ -4,7 +4,7 @@
   "description": "a chat client, only for learn purposes",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon index.js"
+    "test": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/CarlosSanches07/my-chat/issues"
   },
-  "homepage": "https://github.com/CarlosSanches07/my-chat#readme"
+  "homepage": "https://github.com/CarlosSanches07/my-chat#readme",
+  "dependencies": {
+    "nodemon": "^1.19.1",
+    "socket.io": "^2.2.0"
+  }
 }
