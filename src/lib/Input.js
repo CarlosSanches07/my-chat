@@ -2,27 +2,34 @@ const readline = require('readline');
 const comm = require('../controller/Commands');
 
 module.exports = {
-    run: function(){  
-        const rl = readline.createInterface({
+    mainApp: async function(){  
+        const mainMenu = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
             prompt: `my-chat~@${process.env.USERNAME}/>`
         });
-
-        rl.prompt();
+        mainMenu.prompt();
         
-        rl.on('line', (line) => {
+        mainMenu.on('line', (line) => {
             command = line.split(' ')[0];
             param = line.split(' ')[1];
             if(comm[command]){
-                comm[command](param);
+                comm[command](param)
+                    .then((res) => {
+                        if(res){
+                            //implementar regra para sair
+                            console.log(res);
+                        }
+                        mainMenu.prompt();
+                    })
+                    .catch((e) => console.error(e))
             }
-            else
+            else{
                 console.log('Type help for help');
-            rl.prompt();
+                mainMenu.prompt();
+            }
         
         }).on('close', () => {
-            console.log('Have a great day!');
             process.exit(0);
         });
     }

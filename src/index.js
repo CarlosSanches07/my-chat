@@ -5,7 +5,7 @@ const Input = require('./lib/Input');
 const run = function() {
     //Here comes the execution flow
     View.header();
-    Input.run();
+    Input.mainApp();
 }
 
 run();
