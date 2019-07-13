@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/CarlosSanches07/my-chat#readme",
   "dependencies": {
+    "chalk": "^2.4.2",
+    "clear": "^0.1.0",
+    "figlet": "^1.2.3",
+    "inquirer": "^6.5.0",
     "nodemon": "^1.19.1",
     "socket.io": "^2.2.0"
   }
