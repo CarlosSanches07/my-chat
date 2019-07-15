@@ -1,8 +1,9 @@
 const readline = require('readline');
 const comm = require('../controller/Commands');
+const event = require('./event');
 
 module.exports = {
-    mainApp: async function(){  
+    mainApp: async function(){
         const mainMenu = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
@@ -17,7 +18,6 @@ module.exports = {
                 comm[command](param)
                     .then((res) => {
                         if(res){
-                            //implementar regra para sair
                             console.log(res);
                         }
                         mainMenu.prompt();
@@ -28,9 +28,37 @@ module.exports = {
                 console.log('Type help for help');
                 mainMenu.prompt();
             }
-        
+            
         }).on('close', () => {
-            process.exit(0);
+            this.chat();
+        })
+
+        event.on('await', () => {
+            mainMenu.close();
         });
+
+        
+    },
+
+    chat: async function() {
+        const chat = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout,
+            prompt: `chat~@${process.env.USERNAME}/>`
+        });
+        chat.prompt()
+        chat.on('line', (line) => {
+            if(line.split()[0].match('/quit')) {
+                chat.close();
+            }
+            comm['send-message'](line.split());
+            chat.prompt()
+        })
+        .on('close', ()=> {
+            this.mainApp();
+        })
+        event.on('received', () => {
+            chat.prompt();
+        })
     }
 }

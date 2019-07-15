@@ -1,4 +1,5 @@
 const axios = require('axios');
+const socket = require('../lib/socket');
 
 const validateRoom = (room) => {
     if (room)
@@ -17,10 +18,12 @@ module.exports = {
         if (!validateRoom(room))
             return;
         
-            console.log('connecting...');
+        console.log('connecting...');
         let res;
 
-        await axios.post(`${url}/connect`,{
+
+        this.socket = await socket.init(`${url}/`);
+        /* await axios.post(`${url}/connect`,{
             data: room
         })
         .then((response) => {
@@ -31,7 +34,7 @@ module.exports = {
         })
         .catch( e => console.error('Faleid to connect'));
         
-        return res.data;
+        return res.data; */
     },
 
     'connect-global' : async () => {
@@ -43,6 +46,12 @@ module.exports = {
             console.log(room) 
     },
 
+    'send-message' : async (msg) => {
+        await this.socket.emit('message', {
+            from : process.env.USERNAME,
+            message: msg
+        });
+    },
 
     'help' : async () => {
        await console.log(`
