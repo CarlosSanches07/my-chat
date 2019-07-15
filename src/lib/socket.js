@@ -13,9 +13,7 @@ module.exports = {
         })
         .on('received', (data) => {
             console.log(
-                chalk.red(`received [from]${data.from}: 
-                                ${data.message}
-                            `)
+                chalk.red(`\nreceived [from]${data.from}: ${data.message}`)
             );
             event.emit('received');
         });

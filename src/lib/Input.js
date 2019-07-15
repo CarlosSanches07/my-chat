@@ -41,10 +41,11 @@ module.exports = {
     },
 
     chat: async function() {
+        chatPrompt = `chat~@${process.env.USERNAME}/>`
         const chat = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
-            prompt: `chat~@${process.env.USERNAME}/>`
+            prompt: chatPrompt
         });
         chat.prompt()
         chat.on('line', (line) => {
@@ -56,7 +57,7 @@ module.exports = {
         })
         .on('close', ()=> {
             this.mainApp();
-        })
+        });
         event.on('received', () => {
             chat.prompt();
         })
